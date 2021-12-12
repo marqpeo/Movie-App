@@ -1,0 +1,37 @@
+import { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom"
+import movieService from "../../../hooks/useMovieService";
+import SearchForm from "../../SearchForm/SearchForm";
+import './searchpage.sass'
+
+const SearchPage = () => {
+
+    const {movie} = useParams()
+    const [listMovies, setListMovies] = useState([])
+
+    const {getMovieBySearch} = movieService()
+
+    useEffect(() => {
+        getMovieBySearch(movie)
+        .then(res => setListMovies(res))
+    },[getMovieBySearch, movie])
+
+    return (
+        <div className="page searchPage">
+            <SearchForm defaultValue={movie}/>
+            <div className="searchPage_results">
+                {
+                     listMovies.map(item => 
+                                     <Link
+                                         key={item.id}
+                                         className="link"
+                                         to={`/movie/${item.id}`}
+                                         >{item.title}</Link>
+                                         )
+                }
+            </div>
+        </div>
+    )
+}
+
+export default SearchPage
