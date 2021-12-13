@@ -10,7 +10,6 @@ const Page404 = () => {
         <div className="page">
             <div className="page404">
                 <img src={img} alt='error' />
-                <span className='text'>Page not found</span>
                 <button
                         className="search_btn goback"
                         onClick={() => navigate(-1)}

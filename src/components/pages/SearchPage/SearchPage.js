@@ -17,18 +17,20 @@ const SearchPage = () => {
     },[getMovieBySearch, movie])
 
     return (
-        <div className="page searchPage">
-            <SearchForm defaultValue={movie}/>
-            <div className="searchPage_results">
-                {
-                     listMovies.map(item => 
-                                     <Link
-                                         key={item.id}
-                                         className="link"
-                                         to={`/movie/${item.id}`}
-                                         >{item.title}</Link>
-                                         )
-                }
+        <div className="page">
+            <div className="search_page">
+                <SearchForm defaultValue={movie}/>
+                <div className="search_page-results">
+                    {
+                        listMovies.map(item => 
+                                        <Link
+                                            key={item.id}
+                                            className="link"
+                                            to={`/movie/${item.id}`}
+                                            >{item.title}</Link>
+                                            )
+                    }
+                </div>
             </div>
         </div>
     )

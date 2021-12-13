@@ -1,12 +1,10 @@
 import { useEffect, useState } from "react"
 import {Link, useLocation} from 'react-router-dom'
 
-
 import useMovieService from "../../../hooks/useMovieService"
 import { posterUrl } from "../../App/App"
 import Spinner from "../../Spinner/Spinner"
 import './MoviesPage.sass'
-
 
 const MoviesPage = () => {
 
@@ -21,44 +19,42 @@ const MoviesPage = () => {
     useEffect(() => {
         setList([])
         onRequest(true)
-        console.log('page is ',loadedPage);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     },[pathname])
 
-
-    
     const onRequest = (newRequest) => {
         const page = newRequest? (setLoadedPage(1),  1) : (setLoadedPage(prev => prev+1), loadedPage+1)
-        console.log(page);
         getMovies(pathname, page)
             .then(res => setList(prev => [...prev, ...res]))
     }
     
-    if (list.length<1) return <Spinner/>
+    if (list.length<1 && loading) return <Spinner/>
 
     return (
-        <div className='page moviesPage'>
-            <h1 className='page_title my-5'>Top {titleOfPage} Movies{ titleOfPage==='rated'? ' of All time' : ''}</h1>
-            <ul className='movie_list'>
-                {list.map(item => <View movie={item} key={item.id}/>)}
-            </ul>
-            <button
-                className="search_btn getmore"
-                onClick={() => onRequest(false)}
-                >Get more</button>
+        <div className='page'>
+            <div className="movies_page">
+                <h1 className='movies_page-title my-5'>Top {titleOfPage} Movies{ titleOfPage==='rated'? ' of All time' : ''}</h1>
+                <ul className='movies_page-list'>
+                    {list.map(item => <View movie={item} key={item.id}/>)}
+                </ul>
+                <button className="search_btn getmore"
+                        onClick={() => onRequest(false)}
+                        >Get more</button>
+            </div>
         </div>
     )
 }
 const View = ({movie}) => {
     
     return (
-            <Link to={`/movie/${movie.id}`}>
-                <li className='movie'>
-                        <header>{movie.title}</header>
+                <Link className='movie' to={`/movie/${movie.id}`}>
+            <li>
                         <img src={`${posterUrl}${movie.poster}`} alt="poster" />
-                        <span className='rating'>{movie.rating}</span>
-                </li>
-            </Link>
+                        <div className="movie_descr">
+                            {movie.title}
+                            <span className='movie_rating'>{movie.rating}</span>
+                        </div>                        
+            </li>
+                </Link>
     )
 }
 

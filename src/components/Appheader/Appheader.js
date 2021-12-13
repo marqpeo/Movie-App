@@ -22,15 +22,17 @@ const Appheader = () => {
 
         {/* <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span className="navbar-toggler-icon"></span>
-        </button> */}
+        </button> 
+        for future
+        */}
 
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
 
-        <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+        <ul className="navbar-nav me-auto mb-2 mb-lg-0 d-flex align-items-center">
             {
                 navlinks.map(item => {
                     return(
-                        <li key={item.id} className="me-2">
+                        <li key={item.id} className="me-2 text-center">
                         <NavLink className={activeStyle} to={item.path}>{item.text}</NavLink>
                         </li> 
                     )

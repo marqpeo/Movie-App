@@ -1,11 +1,7 @@
-/* eslint-disable no-unused-vars */
-import { useEffect,useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
-import movieService from "../../hooks/useMovieService";
 import './searchform.sass'
-
 
 const SearchForm = ({defaultValue=''}) => {
 
@@ -29,40 +25,10 @@ const SearchForm = ({defaultValue=''}) => {
                 placeholder="Search"
                 />
                 <button
-                className='search_btn' //it was "btn btn-outline"
+                className='search_btn' //"btn btn-outline"
                 type="submit">Search</button>
         </form>
     )
 }
 
-
-
 export default SearchForm
-
-
-
-// const visible = visibleList? ' visible' : ''
-
-// <div
-//                 className={`results${visible}`}>
-
-//                 !(visibleList)? null : 
-//         listMovies.map(item => 
-//              <Link
-//           //        key={item.id}
-//           //        className="link"
-//           //        to={`/movie/${item.id}`}
-//           //        onClick={() => reset()}
-//           //        >{item.title}</Link>
-//           //        )
-
-//             </div>
-// useEffect(() => {
-//     if (watch("movie").length>0 && visibleList){
-//         getMovieBySearch(watch("movie"))
-//         .then(res => setListMovies(res))
-//             .then(() => setVisibleList(true))
-//         }
-//     else if(watch("movie").length<1) setListMovies([])
-// // eslint-disable-next-line react-hooks/exhaustive-deps
-// },[watch("movie")])

@@ -44,4 +44,5 @@ And for installing the dependencies in the local node_modules folder from packag
 - [x]   Single movie's page
 - [ ]   A list of similar movies on movie's page and more information
 - [ ]   Search form with dropdown of results
-- [ ]   ...
+- [ ]   Bugs, bugs, bugs...
+- [ ]   ?

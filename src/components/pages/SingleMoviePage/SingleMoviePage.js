@@ -15,7 +15,6 @@ const SingleMoviePage = () => {
     useEffect(() => {
         getMovieById(movieId)
             .then(res => setMovie(res))
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [movieId])
 
     const {title,date,rating,poster,description,voteCount, status} = movie
@@ -23,29 +22,31 @@ const SingleMoviePage = () => {
     const genres = movie.genres ? movie.genres.reduce((a,b) => a+', '+b) : false
     
     return (
-        <div className="page SingleMovie">
-            <div className="container">
-                <div className="row">
+        <div className="page">
+            <div className="single_movie">
+                <div className="container">
+                    <div className="row">
 
-                    <div className="col-4">
-                    <img className='poster' src={`${posterUrl}${poster}`} alt='poster'/>
+                        <div className="col-4">
+                        <img className='single_movie-poster' src={`${posterUrl}${poster}`} alt='poster'/>
+                        </div>
+
+                        <div className="col single_movie-info">
+                            <h1>{title}</h1>
+                            <p><i class="bi bi-star-fill fs-1"> </i> <span className="single_movie-info-rating">{rating}</span> / {voteCount}</p>
+                            <p>{status==='Released'?'':'Status:'}<span className='single_movie-info-data'> {status}</span></p>
+                            <p>Release date:<span className='single_movie-info-data'> {date}</span></p>
+                            <p>Genres:<span className='single_movie-info-data'> {genres} </span></p>
+                            <p><span className="single_movie-info-descr">Description: </span><br/> {description}</p>
+
+                            <button
+                                className="search_btn goback"
+                                onClick={() => navigate(-1)}
+                                >Go back</button>
+
+                        </div>
+
                     </div>
-
-                    <div className="col info">
-                        <h1>{title}</h1>
-                        <p><i class="bi bi-star-fill fs-1"> </i> <span className="rating">{rating}</span> / {voteCount}</p>
-                        <p>{status==='Released'?'':'Status:'}<span className='data'> {status}</span></p>
-                        <p>Release date:<span className='data'> {date}</span></p>
-                        <p>Genres:<span className='data'> {genres} </span></p>
-                        <p><span className="descr">Description: </span><br/> {description}</p>
-
-                        <button
-                            className="search_btn goback"
-                            onClick={() => navigate(-1)}
-                            >Go back</button>
-
-                    </div>
-
                 </div>
             </div>
         </div>
