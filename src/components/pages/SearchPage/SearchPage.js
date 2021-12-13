@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom"
 import movieService from "../../../hooks/useMovieService";
@@ -14,7 +15,7 @@ const SearchPage = () => {
     useEffect(() => {
         getMovieBySearch(movie)
         .then(res => setListMovies(res))
-    },[getMovieBySearch, movie])
+    },[movie])
 
     return (
         <div className="page">

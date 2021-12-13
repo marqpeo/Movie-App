@@ -1,16 +1,24 @@
 .single_movie
+    min-height: 100vh
+    display: flex
+    align-items: center
+    padding-top: 80px
     &-poster
+        border-radius: 8px
+        overflow: hidden
         max-height: 70vh
         max-width: 100%
     &-info
         text-align: left
         position: relative
+        &-title
+            width: 85%
         &-rating
             font-size: 2rem
         &-data
             font-size: 1.5rem
         &-descr
-            font-size: 30px
+            font-size: 1.5rem
     .goback
         position: absolute
         right: 0

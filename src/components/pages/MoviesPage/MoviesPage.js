@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react"
 import {Link, useLocation} from 'react-router-dom'
 
@@ -26,8 +27,10 @@ const MoviesPage = () => {
         getMovies(pathname, page)
             .then(res => setList(prev => [...prev, ...res]))
     }
-    
-    if (list.length<1 && loading) return <Spinner/>
+    // const loading = true
+
+    if (list.length<1 || loading)
+        return ( <div className="page d-flex align-items-center"><Spinner/></div> )
 
     return (
         <div className='page'>
@@ -46,15 +49,15 @@ const MoviesPage = () => {
 const View = ({movie}) => {
     
     return (
-                <Link className='movie' to={`/movie/${movie.id}`}>
-            <li>
-                        <img src={`${posterUrl}${movie.poster}`} alt="poster" />
-                        <div className="movie_descr">
-                            {movie.title}
-                            <span className='movie_rating'>{movie.rating}</span>
-                        </div>                        
-            </li>
+            <li className='movie'>
+                <Link to={`/movie/${movie.id}`}>
+                        <img src={`${posterUrl}${movie.poster}`} alt="poster"/>
+                            <div className="movie_descr">
+                                {movie.title}
+                                <span className='movie_rating'>{movie.rating}</span>
+                            </div>                     
                 </Link>
+            </li>
     )
 }
 

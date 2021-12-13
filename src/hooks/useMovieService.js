@@ -39,6 +39,7 @@ const useMovieService = () => {
             description: movie.overview,
             voteCount : movie.vote_count,
             status: movie.status,
+            runtime: movie.runtime,
             genres: movie.genres? movie.genres.map(item => item.name) : false
         }
     }
