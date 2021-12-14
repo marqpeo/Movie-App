@@ -15,16 +15,54 @@ const Appheader = () => {
     const activeStyle = ({isActive}) => "nav-link" + (isActive ? ' activated' : '')
 
     return (
-    <nav className="navbar navbar-expand-lg fixed-top">
+        <>
+        <nav className="navbar navbar-expand-lg fixed-top">
+        <div className="container-fluid">
+
+            <Link className="navbar-brand mx-5 fs-2" to="/">Movie app</Link>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+
+            <div className="collapse navbar-collapse" id="navbarSupportedContent">
+
+            <ul className="navbar-nav me-auto mb-2 mb-lg-0 d-flex align-items-center">
+                {
+                    navlinks.map(item => {
+                        return(
+                            <li key={item.id} className="nav-item me-2 text-center">
+                            <NavLink className={activeStyle} to={item.path}>{item.text}</NavLink>
+                            </li> 
+                        )
+                    })
+                }
+            </ul>
+            
+            <SearchForm/>
+            
+            </div>
+        </div>
+        </nav>
+        </>
+    )
+}
+
+export default Appheader
+
+
+
+// eslint-disable-next-line no-lone-blocks
+{/* <nav className="navbar navbar-expand-lg fixed-top">
     <div className="container-fluid">
 
         <Link className="navbar-brand mx-5 fs-2" to="/">Movie app</Link>
 
-        {/* <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span className="navbar-toggler-icon"></span>
-        </button> 
-        for future
-        */}
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
 
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
 
@@ -32,7 +70,7 @@ const Appheader = () => {
             {
                 navlinks.map(item => {
                     return(
-                        <li key={item.id} className="me-2 text-center">
+                        <li key={item.id} className="nav-item me-2 text-center">
                         <NavLink className={activeStyle} to={item.path}>{item.text}</NavLink>
                         </li> 
                     )
@@ -44,8 +82,4 @@ const Appheader = () => {
         
         </div>
     </div>
-    </nav>
-    )
-}
-
-export default Appheader
+    </nav> */}

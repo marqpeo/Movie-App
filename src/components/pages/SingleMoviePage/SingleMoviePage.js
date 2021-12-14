@@ -2,7 +2,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom"
 import movieService from "../../../hooks/useMovieService";
-import { posterUrl } from "../../App/App";
+import ActorList from "../../SingleMovie/ActorList/ActorList";
+import SpinnerPage from "../../Spinner/SpinnerPage";
 
 import './SingleMoviePage.sass'
 
@@ -10,24 +11,28 @@ import './SingleMoviePage.sass'
 const SingleMoviePage = () => {
     const {movieId} = useParams()
     const [movie, setMovie] = useState({})
-    const {getMovieById} = movieService()
+
+
+    const {getMovieById,posterUrl, loading} = movieService()
     const navigate = useNavigate()
 
     useEffect(() => {
         getMovieById(movieId)
             .then(res => setMovie(res))
             .catch(err => console.log(err))
+
     }, [movieId])
 
     const {title,date,rating,poster,description,voteCount,status,runtime} = movie
-
     const genres = movie.genres ? movie.genres.reduce((a,b) => a+', '+b) : false
-    
     const movietime = runtime? `${Math.floor(runtime/60)} h ${runtime%60} m` : 'unknown'
+
+    if (loading) return <SpinnerPage/>
 
     return (
         <div className="page">
             <div className="single_movie">
+
                 <div className="container">
                     <div className="row">
 
@@ -51,6 +56,7 @@ const SingleMoviePage = () => {
 
                     </div>
                 </div>
+                <ActorList movieId={movieId}/>
             </div>
         </div>
     )

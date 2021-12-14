@@ -8,7 +8,7 @@ const request = axios.create({
 
 const useMovieService = () => {
     const _apiKey = '014790e247641f87a6ec229cf9cd44e4'
-
+    const posterUrl = 'https://image.tmdb.org/t/p/w500'
     const [loading, setLoading] = useState(true)
 
 
@@ -20,13 +20,21 @@ const useMovieService = () => {
 
     const getMovieById = async (movieId) => {
         const res = await request.get(`/movie/${movieId}?api_key=${_apiKey}`)
+        setLoading(false)
         return _transformMovie(res.data)
     }
 
     const getMovieBySearch = async (query) => {
-        const res = await request.get(`search/movie?api_key=${_apiKey}&query=${query}`)
+        const res = await request.get(`/search/movie?api_key=${_apiKey}&query=${query}`)
+        setLoading(false)
         return res.data.results.map(_transformForSearch)
-    } 
+    }
+
+    const getActorsInMovie = async (movieId) => {
+        const res = await request.get(`/movie/${movieId}/credits?api_key=${_apiKey}`)
+        setLoading(false)
+        return res.data.cast.map(_transformActor)
+    }
 
     const _transformMovie = (movie) => {
         return {
@@ -50,11 +58,21 @@ const useMovieService = () => {
             title: movie.title
         }
     }
+    const _transformActor = (actor) => {
+        return {
+            id: actor.id,
+            name: actor.name,
+            char: actor.character,
+            photo: actor.profile_path
+        }
+    }
     return {
         getMovies,
         getMovieById,
         getMovieBySearch,
-        loading
+        loading,
+        getActorsInMovie,
+        posterUrl
     }
 }
 

@@ -22,7 +22,7 @@ const SearchForm = ({defaultValue=''}) => {
                 {...register("movie")}
                 className="form-control me-2"
                 type="search"
-                placeholder="Search"
+                placeholder='🔍'
                 />
                 <button
                 className='search_btn' //"btn btn-outline"

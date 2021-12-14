@@ -1,0 +1,33 @@
+.actors
+    // height: 150px
+    width: 100%
+    overflow: hidden
+    margin-top: 20px
+    margin-bottom: 20px
+    &_list
+        display: flex
+        flex-direction: row
+        justify-content: start
+        align-items: center
+        .actor
+            position: relative
+            height: 300px
+            width: 200px
+            background-color: #fff
+            margin-right: 10px
+            cursor: grab
+            &:active
+                cursor: grabbing
+            img
+                height: 100%
+            &_descr
+                position: absolute
+                bottom: 0
+                transition: all .4s
+                width: 100%
+                // height: 10%
+                background: linear-gradient(to top, black, rgba(0, 0, 0, 0.4))
+                &-name
+                    font-size: 20px
+                &-char
+                    font-size: 15px

@@ -11,7 +11,6 @@ import SearchPage from "../pages/SearchPage/SearchPage";
 import SingleMoviePage from "../pages/SingleMoviePage/SingleMoviePage";
 import './app.sass'
 
-export const posterUrl = 'https://image.tmdb.org/t/p/w500'
 
 const App = () => {
   
