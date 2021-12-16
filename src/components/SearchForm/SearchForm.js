@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import './searchform.sass'
 
-const SearchForm = ({defaultValue=''}) => {
+const SearchForm = ({defaultValue}) => {
 
     const navigate = useNavigate()
     const { register, handleSubmit, reset } = useForm()

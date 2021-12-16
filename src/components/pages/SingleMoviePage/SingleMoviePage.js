@@ -24,40 +24,39 @@ const SingleMoviePage = () => {
     }, [movieId])
 
     const {title,date,rating,poster,description,voteCount,status,runtime} = movie
-    const genres = movie.genres ? movie.genres.reduce((a,b) => a+', '+b) : false
+    const genres = movie.genres ? (Array.isArray(movie.genres)? movie.genres.reduce((a,b) => a+', '+b) : movie.genres) : false
     const movietime = runtime? `${Math.floor(runtime/60)} h ${runtime%60} m` : 'unknown'
 
     if (loading) return <SpinnerPage/>
-
     return (
-        <div className="page">
-            <div className="single_movie">
+        <div className="single_movie">
 
-                <div className="container">
-                    <div className="row">
-
-                        <div className="col-3">
-                        <img className='single_movie-poster' src={`${posterUrl}${poster}`} alt='poster'/>
-                        </div>
-
-                        <div className="col single_movie-info">
-                            <h1 className="single_movie-info-title">{title}</h1>
-                            <p><i class="bi bi-star-fill fs-1"> </i> <span className="single_movie-info-rating">{rating}</span> / {voteCount}</p>
-                            <p>{status==='Released'?'':'Status:'}<span className='single_movie-info-data'> {status}</span></p>
-                            <p>Release date:<span className='single_movie-info-data'> {date}</span></p>
-                            <p>Genres:<span className='single_movie-info-data'> {genres} </span></p>
-                            <p>Runtime:<span className='single_movie-info-data'> {movietime} </span></p>
-                            <p><span className="single_movie-info-descr">Description: </span><br/> {description}</p>
-                            <button className="search_btn goback"
-                                    onClick={() => navigate(-1)}
-                                    >Go back</button>
-
-                        </div>
-
-                    </div>
+            <div className="single_movie-details">
+                <div className="movie_poster">
+                    <img src={`${posterUrl}${poster}`} alt='poster'/>
                 </div>
-                <ActorList movieId={movieId}/>
+
+                <div className="movie_info">
+                    <h1 className="title">{title} {date?`(${date.slice(0,4)})`:null}</h1>
+                    <p><i class="bi bi-star-fill fs-1"></i> <span className="rating">   {rating}</span> / {voteCount}</p>
+                    <p>{status==='Released'?'':(<span className="info_type">Status:</span>)}<span className='data'> {status}</span></p>
+                    <p><span className="info_type">Genres:</span><span className='data'>
+                        {genres} 
+                        </span></p>
+                    <p><span className="info_type">Runtime:</span><span className='data'>{runtime} min.  /  {movietime} </span></p>
+                    <p><span className="info_type">Release date:</span><span className='data'> {date}</span></p>
+                    <div>
+                        <span className="info_type descr">Description: </span><br/>
+                        {description}
+                    </div>
+                    <button className="search_btn goback"
+                            onClick={() => navigate(-1)}
+                            >Go back</button>
+                </div>
             </div>
+
+            <ActorList movieId={movieId}/>
+            
         </div>
     )
 }

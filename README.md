@@ -42,7 +42,11 @@ And for installing the dependencies in the local node_modules folder from packag
 - [x]   Simple sets of movies
 - [x]   Movie search
 - [x]   Single movie's page
+- [x]   More information on movie's page (similar movies, actors...)
+- [x]   Single actor's page
+- [ ]   Crew information on movie's page
+- [ ]   Sets of actors
+- [ ]   Search for actors as films
+- [ ]   TV series
 - [ ]   Сatch errors
-- [ ]   More information on movie's page (similar movies, actors...)
-- [ ]   Search form with dropdown of results
 - [ ]   ?

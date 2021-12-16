@@ -23,18 +23,33 @@ const useMovieService = () => {
         setLoading(false)
         return _transformMovie(res.data)
     }
+    
+    const getActorsInMovie = async (movieId) => {
+        const res = await request.get(`/movie/${movieId}/credits?api_key=${_apiKey}`)
+        setLoading(false)
+        return {
+            actors: res.data.cast.map(_transformActor),
+            crew: res.data.crew.map(_transformCrew)
+        }
+    }
 
     const getMovieBySearch = async (query) => {
         const res = await request.get(`/search/movie?api_key=${_apiKey}&query=${query}`)
         setLoading(false)
         return res.data.results.map(_transformForSearch)
     }
-
-    const getActorsInMovie = async (movieId) => {
-        const res = await request.get(`/movie/${movieId}/credits?api_key=${_apiKey}`)
+    
+    const getActorById = async (actorId) => {
+        const res = await request.get(`/person/${actorId}?api_key=${_apiKey}`)
         setLoading(false)
-        return res.data.cast.map(_transformActor)
+        return _transformActor(res.data)
     }
+    const getMoviesOfActor = async (actorId) => {
+        const res = await request.get(`/person/${actorId}/movie_credits?api_key=${_apiKey}`)
+        setLoading(false)
+        return res.data.cast.slice(0,30).map(_transformMovieOfActor)
+    }
+
 
     const _transformMovie = (movie) => {
         return {
@@ -63,15 +78,40 @@ const useMovieService = () => {
             id: actor.id,
             name: actor.name,
             char: actor.character,
-            photo: actor.profile_path
+            photo: actor.profile_path,
+            birthday: actor.birthday,
+            biography: actor.biography,
+            birthPlace: actor.place_of_birth,
+            deathday: actor.deathday
         }
     }
+    const _transformCrew = (crew) => {
+        if (crew.job==="Producer"||"Director"||"Original Music Composer"||"Director of Photography"){
+            return {
+                id: crew.id,
+                name: crew.name,
+                job: crew.job,
+                photo: crew.profile_path
+            }
+        }
+    }
+    const _transformMovieOfActor = (movie) => {
+        return {
+            id: movie.id,
+            title: movie.title,
+            rating: movie.vote_average,
+            poster: movie.poster_path
+        }
+    }
+
     return {
         getMovies,
         getMovieById,
         getMovieBySearch,
-        loading,
         getActorsInMovie,
+        getActorById,
+        getMoviesOfActor,
+        loading,
         posterUrl
     }
 }
