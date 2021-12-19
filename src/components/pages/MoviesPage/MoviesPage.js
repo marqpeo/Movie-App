@@ -50,8 +50,8 @@ const View = ({movie, posterUrl}) => {
                 <Link to={`/movie/${movie.id}`}>
                         <img src={`${posterUrl}${movie.poster}`} alt="poster"/>
                             <div className="movie_descr">
-                                {movie.title}
-                                <span className='movie_rating'>{movie.rating}</span>
+                                <div className='title'>{movie.title}</div>
+                                <div className='rating'>{movie.rating}</div>
                             </div>                     
                 </Link>
             </li>

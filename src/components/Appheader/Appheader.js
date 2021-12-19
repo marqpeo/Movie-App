@@ -7,10 +7,9 @@ import './appheader.sass'
 const Appheader = () => {
 
     const navlinks = [
-        {path:'/', text:'Home', id:0},
-        {path:'/top_rated', text:'Top rated', id:1},
-        {path:'/popular', text:'Popular', id:2},
-        {path:'/upcoming', text:'Upcoming', id:3}] 
+        {path:'/top_rated', text:'Top rated', id:0},
+        {path:'/popular', text:'Popular', id:1},
+        {path:'/upcoming', text:'Upcoming', id:2}] 
 
     const activeStyle = ({isActive}) => "nav-link" + (isActive ? ' activated' : '')
 
@@ -21,8 +20,8 @@ const Appheader = () => {
 
             <Link className="navbar-brand mx-5 fs-2" to="/">Movie app</Link>
 
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+            <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span className="navbar-toggler-icon"></span>
             </button>
 
 

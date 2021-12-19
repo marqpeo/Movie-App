@@ -8,12 +8,12 @@ import './actorList.sass'
 
 const ActorList = ({movieId}) => {
 
-    const {getActorsInMovie,posterUrl,loading} = useMovieService()
+    const {getCreditsInMovie,posterUrl,loading} = useMovieService()
     const [actorList, setActorList] = useState([])
 
 
     useEffect(() => {
-        getActorsInMovie(movieId)
+        getCreditsInMovie(movieId)
             .then(res => setActorList(res.actors))
             .catch(err => console.log(err))
     },[movieId])
@@ -27,11 +27,14 @@ const ActorList = ({movieId}) => {
                 {
                     actorList.map(item => {
                         return ( 
-                            <Link to={`/actor/${item.id}`} className="actor">
+                            <Link
+                                key={item.id}
+                                to={`/actor/${item.id}`}
+                                className="actor">
                                 <img src={`${posterUrl}${item.photo}`} alt={item.name}/>
                                 <div className="actor_descr">
                                     <div className="actor_descr-name">{item.name}</div>
-                                    <div className="actor_descr-char">Character: {item.char}</div>
+                                    <div className="actor_descr-char">{item.char}</div>
                                 </div>
                             </Link>
                         )

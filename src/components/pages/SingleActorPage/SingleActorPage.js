@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import useMovieService from '../../../hooks/useMovieService'
-import MoviesList from '../../ActorInfo/MoviesList/MoviesList'
+import MoviesList from '../../MoviesList/MoviesList'
 import SpinnerPage from '../../Spinner/SpinnerPage'
 
 import './single-actor-page.sass'
@@ -56,7 +56,7 @@ const SingleActorPage = () => {
                             >Go back</button>
                 </div>
             </div>
-            <MoviesList actorId={actorId} actorName={name}/>
+            <MoviesList type='actor' actorId={actorId} actorName={name}/>
         </div>
     )
 }

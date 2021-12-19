@@ -24,12 +24,12 @@ const useMovieService = () => {
         return _transformMovie(res.data)
     }
     
-    const getActorsInMovie = async (movieId) => {
+    const getCreditsInMovie = async (movieId) => {
         const res = await request.get(`/movie/${movieId}/credits?api_key=${_apiKey}`)
         setLoading(false)
         return {
-            actors: res.data.cast.map(_transformActor),
-            crew: res.data.crew.map(_transformCrew)
+            actors: res.data.cast.map(_transformActor).slice(0,15),
+            crew: _transformCrew(res.data.crew)
         }
     }
 
@@ -47,10 +47,18 @@ const useMovieService = () => {
     const getMoviesOfActor = async (actorId) => {
         const res = await request.get(`/person/${actorId}/movie_credits?api_key=${_apiKey}`)
         setLoading(false)
-        return res.data.cast.slice(0,30).map(_transformMovieOfActor)
+        return res.data.cast
+                    .map(_transformMoviesList)
+                    .sort((a,b)=> b.rating-a.rating)
+                    .slice(0,20)
+    }
+    const getSimilarMovies = async (movieId) => {
+        const res = await (await request.get(`/movie/${movieId}/similar?api_key=${_apiKey}`)).data.results
+        setLoading(false)
+        return res.map(_transformMoviesList).sort((a,b)=> b.rating-a.rating)
     }
 
-
+// ======================================================================================
     const _transformMovie = (movie) => {
         return {
             id: movie.id,
@@ -66,13 +74,14 @@ const useMovieService = () => {
             genres: movie.genres? movie.genres.map(item => item.name) : false
         }
     }
-
+// ======================================================================================
     const _transformForSearch = (movie) => {
         return {
             id: movie.id,
             title: movie.title
         }
     }
+// ======================================================================================
     const _transformActor = (actor) => {
         return {
             id: actor.id,
@@ -85,21 +94,32 @@ const useMovieService = () => {
             deathday: actor.deathday
         }
     }
+// ======================================================================================
     const _transformCrew = (crew) => {
-        if (crew.job==="Producer"||"Director"||"Original Music Composer"||"Director of Photography"){
-            return {
-                id: crew.id,
-                name: crew.name,
-                job: crew.job,
-                photo: crew.profile_path
-            }
+        // console.log(crew);
+        const crewObj = {}
+        crew.filter( ({job}) => job === "Producer"||
+                                job === "Director"||
+                                job === "Original Music Composer"||
+                                job ===  "Director of Photography") 
+            .forEach(({job,name})=> {
+                    const jobName = job.split(' ').join('_').toLowerCase()
+                    if (!crewObj.hasOwnProperty(jobName)){
+                        crewObj[jobName]= []
+                    }
+                        crewObj[jobName].push(name)
+                })
+        for (const key in crewObj) {
+            crewObj[key] = crewObj[key].map((item,i,arr) => i===arr.length-1?item:`${item}, `).join('')
         }
+        return crewObj
     }
-    const _transformMovieOfActor = (movie) => {
+// ======================================================================================
+    const _transformMoviesList = (movie) => {
         return {
             id: movie.id,
             title: movie.title,
-            rating: movie.vote_average,
+            rating: movie.vote_average.toFixed(1),
             poster: movie.poster_path
         }
     }
@@ -108,9 +128,10 @@ const useMovieService = () => {
         getMovies,
         getMovieById,
         getMovieBySearch,
-        getActorsInMovie,
+        getCreditsInMovie,
         getActorById,
         getMoviesOfActor,
+        getSimilarMovies,
         loading,
         posterUrl
     }

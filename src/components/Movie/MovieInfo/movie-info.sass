@@ -1,0 +1,51 @@
+@import '../../../style/variables'
+
+.movie
+    // width: 100%
+    // box-sizing: border-box
+    display: flex
+    flex-direction: row
+    justify-content: space-between
+    flex-wrap: wrap
+    &_title
+        text-align: left
+        width: 85%
+    &_poster
+        width: 30%
+        min-width: 300px
+        max-height: 100vh
+        margin: 0 auto
+        margin-bottom: 5px
+        // vertical-align: center
+        // text-align: center
+        img
+            border-radius: 8px
+            overflow: hidden
+            // height: 70%
+            max-width: 90%
+            max-height: 100%
+    &_info
+        width: 65%
+        // min-width: 400px
+        margin: 0 auto
+        position: relative
+        p
+            text-align: left
+            width: 100%
+            display: flex
+            justify-content: baseline
+            align-items: center
+            // border-bottom: 1px solid white
+            // border-top: 1px solid white
+        .info_type
+            width:25%
+            filter: brightness(80%)
+        .rating
+            font-size: 2rem
+        .data
+            font-size: 1rem
+        .descr
+            font-size: 1.5rem
+        .producer
+            text-decoration: none
+            color: $text-color

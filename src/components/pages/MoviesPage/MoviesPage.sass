@@ -28,6 +28,9 @@
             a
                 height: 100%
                 width: 100%
+            img
+                object-fit: cover
+                height: 100%
             &_descr
                 display: flex
                 justify-content: space-between
@@ -35,16 +38,16 @@
                 width: 100%
                 position: absolute
                 bottom: 0
-                text-align: left
                 padding: 5px 0 0 10px
                 color: rgba(255, 255, 255, 0.6)
                 background: linear-gradient(to top, black, rgba(0, 0, 0, 0.1))
                 transition: all .4s
-            img
-                object-fit: cover
-                height: 100%
-            &_rating
-                font-size: 2rem
+                .title
+                    text-align: left
+                    max-width: 80%
+                .rating
+                    font-size: 2rem
+                    width: max-content
             &:hover
                 transform: translateY(-10px)
                 box-shadow: 6px 6px 12px rgba(255, 255, 255, 0.4)

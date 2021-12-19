@@ -1,4 +1,4 @@
-@import '../../../style/variables'
+@import '../../style/variables'
 
 .movies
     // height: 150px
@@ -17,21 +17,34 @@
         scrollbar-base-color: $red-color
         .movie
             position: relative
-            height: 300px
-            min-width: 200px
+            height: 250px
+            min-width: 170px
+            overflow: hidden
             background-color: #fff
             margin: 0 5px
             color: $text-color
             img
+                object-fit: cover
                 height: 100%
+                width: 100%
+            &:hover
+                font-size: 1.3rem
+                .movie_descr
+                    background: linear-gradient(to top, black, rgba(0, 0, 0, 0.5))
             &_descr
                 position: absolute
                 bottom: 0
                 transition: all .4s
                 width: 100%
                 // height: 10%
-                background: linear-gradient(to top, black, rgba(0, 0, 0, 0.4))
+                background: linear-gradient(to top, black, rgba(0, 0, 0, 0.3))
+                display: flex
+                justify-content: space-between
+                align-items: flex-end
                 &-name
-                    font-size: 20px
-                &-char
-                    font-size: 15px
+                    max-width: 80%
+                    // font-size: 1rem
+                &-rating
+                    text-align: right
+                    width: auto
+                    font-size: 1.5rem
