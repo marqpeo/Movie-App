@@ -21,6 +21,7 @@ const SingleMoviePage = () => {
         getMovieById(movieId)
             .then(res => setMovie(res))
             // .catch(err => console.log(err))
+
         }, [movieId])
     
     if (loading) return <SpinnerPage/>
@@ -38,11 +39,11 @@ const SingleMoviePage = () => {
                 <button className="search_btn goback"
                         onClick={() => navigate(-1)}
                         >Go back</button>
+                
             </div>
 
             <ActorList movieId={movieId}/>
             <MoviesList type="movie" movieId={movieId}/>
-            
         </div>
     )
 }

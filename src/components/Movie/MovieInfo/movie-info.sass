@@ -29,23 +29,41 @@
         // min-width: 400px
         margin: 0 auto
         position: relative
-        p
+        .descr
+            font-size: 1.5rem
+        .movie_info-block
+            margin: 1rem 0
             text-align: left
             width: 100%
             display: flex
             justify-content: baseline
-            align-items: center
+            align-items: baseline
             // border-bottom: 1px solid white
             // border-top: 1px solid white
-        .info_type
-            width:25%
-            filter: brightness(80%)
-        .rating
-            font-size: 2rem
-        .data
-            font-size: 1rem
-        .descr
-            font-size: 1.5rem
-        .producer
-            text-decoration: none
-            color: $text-color
+            .info_type
+                width:25%
+                filter: brightness(80%)
+            .rating
+                margin-left: 1rem
+                font-size: 1.6rem
+            .data
+                font-size: 1rem
+            .producer
+                text-decoration: none
+                color: $text-color
+            .movie_trailers
+                display: flex
+                flex-direction: column
+                justify-content: center
+                &-link
+                    margin-bottom: .5rem
+                    color: $text-color
+                    text-decoration: none
+                    transition: all .3s
+                    &:hover
+                        transform: translateX(-10px)
+                        span
+                            border-bottom: 1px outset $text-color
+                    span
+                        border-bottom: 1px inset $red-color
+

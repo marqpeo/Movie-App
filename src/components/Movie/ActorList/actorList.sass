@@ -21,6 +21,7 @@
             background-color: #fff
             margin: 0 5px
             color: $text-color
+            transition: all .3s
             img
                 height: 100%
             &_descr
@@ -28,8 +29,15 @@
                 bottom: 0
                 transition: all .4s
                 width: 100%
-                background: linear-gradient(to top, black, rgba(0, 0, 0, 0.4))
+                background: linear-gradient(to top, black, rgba(0, 0, 0, 0.1))
                 &-name
                     font-size: 1.25rem
                 &-char
+                    font-size: .9rem
+                    font-size: 0
+                    transition: all .3s
+            &:hover
+                .actor_descr
+                    background: linear-gradient(to top, black, rgba(0, 0, 0, 0.3))
+                .actor_descr-char
                     font-size: .9rem

@@ -9,6 +9,7 @@ const request = axios.create({
 const useMovieService = () => {
     const _apiKey = '014790e247641f87a6ec229cf9cd44e4'
     const posterUrl = 'https://image.tmdb.org/t/p/w500'
+    const videoUrl = 'https://www.youtube.com/watch?v='
     const [loading, setLoading] = useState(true)
 
 
@@ -56,6 +57,12 @@ const useMovieService = () => {
         const res = await (await request.get(`/movie/${movieId}/similar?api_key=${_apiKey}`)).data.results
         setLoading(false)
         return res.map(_transformMoviesList).sort((a,b)=> b.rating-a.rating)
+    }
+    const getMovieVideos = async (movieId) => {
+        const res = await (await request.get(`/movie/${movieId}/videos?api_key=${_apiKey}`))
+                        .data.results
+                        .filter(item=> item.site==="YouTube"&&item.type==="Trailer")
+        return res.map(_transformVideosOfMovie)
     }
 
 // ======================================================================================
@@ -123,6 +130,13 @@ const useMovieService = () => {
             poster: movie.poster_path
         }
     }
+    const _transformVideosOfMovie = (movie) => {
+        return {
+            id: movie.id,
+            key: movie.key,
+            name: movie.name
+        }
+    }
 
     return {
         getMovies,
@@ -132,8 +146,10 @@ const useMovieService = () => {
         getActorById,
         getMoviesOfActor,
         getSimilarMovies,
+        getMovieVideos,
         loading,
-        posterUrl
+        posterUrl,
+        videoUrl
     }
 }
 

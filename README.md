@@ -1,3 +1,5 @@
+<div id="top"></div>
+
 # Movie-App
 
 The application shows a catalog of films in three sets: top rated, popular and upcoming. For more details, there are page of movies, where you can find more movie's info.
@@ -22,6 +24,8 @@ I am using the following frameworks and libraries and their latest features:
 
 * [Sass](https://github.com/sass/dart-sass)
 
+<p align="right"><a href="#top">back to top</a></p>
+
 
 ## Getting Started
 
@@ -36,6 +40,8 @@ To save the repository locally you can use the following command
 And for installing the dependencies in the local node_modules folder from package.json use this:
     
     npm i
+    
+<p align="right"><a href="#top">back to top</a></p>
 
 ## Roadmap
 
@@ -49,3 +55,5 @@ And for installing the dependencies in the local node_modules folder from packag
 - [ ]   Search for actors as films
 - [ ]   TV series
 - [ ]   ?
+
+<p align="right"><a href="#top">back to top</a></p>

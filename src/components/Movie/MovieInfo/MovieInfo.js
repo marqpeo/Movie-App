@@ -8,14 +8,18 @@ import './movie-info.sass'
 const MovieInfo = ({movie, movieId}) => {
     const {title,date,rating,description,voteCount,status,runtime} = movie
     const [crew, setCrew] = useState({})
-
-    const {getCreditsInMovie, loading} = useMovieService()
+    const [trailers, setTrailers] = useState([])
+    const {getCreditsInMovie,getMovieVideos,loading, videoUrl} = useMovieService()
     
     useEffect(() => {
         getCreditsInMovie(movieId)
-        .then(({crew}) => setCrew(crew))
-        // .then(({crew}) => console.log(crew))
-        .catch(err => console.log(err))
+            .then(({crew}) => setCrew(crew))
+            // .then(({crew}) => console.log(crew))
+            .catch(err => console.log(err))
+        getMovieVideos(movieId)
+            .then(setTrailers)
+            // .then(res=> console.log(res))
+            .catch(err => console.log(err))
         
     }, [movieId])
     
@@ -28,18 +32,39 @@ const MovieInfo = ({movie, movieId}) => {
     return (
         <div className="movie_info">
             <h1 className="movie_title">{title}{date?` (${date.slice(0,4)})`:null}</h1>
-            <p><i className="bi bi-star-fill fs-1"></i> <span className="rating">   {rating}</span> / {voteCount}</p>
-            <p>{status==='Released'?'':(<span className="info_type">Status:</span>)}<span className='data'> {status}</span></p>
-            <p><span className="info_type">Genres:</span><span className='data'>
+            <div className='movie_info-block'><i className="bi bi-star-fill fs-1"></i><span className="rating">{rating}</span> / {voteCount}</div>
+            <div className='movie_info-block'>{status==='Released'?'':(<span className="info_type">Status:</span>)}<span className='data'> {status}</span></div>
+            <div className='movie_info-block'><span className="info_type">Genres:</span><span className='data'>
                 {genres} 
-                </span></p>
-            <p><span className="info_type">Runtime:</span><span className='data'>{runtime} min.  /  {movietime} </span></p>
-            <p><span className="info_type">Release date:</span><span className='data'> {date}</span></p>
-            <p><span className="info_type">Director:</span><span className='data'> {director} </span></p>
-            <p><span className="info_type">Producers:</span><span className='data'>{producer}</span></p>
-            <p><span className="info_type">Director of photography:</span><span className='data'>{director_of_photography}</span></p>
-            <p><span className="info_type">Composers:</span><span className='data'>{original_music_composer}</span></p>
+                </span></div>
+            <div className='movie_info-block'><span className="info_type">Runtime:</span><span className='data'>{runtime} min.  /  {movietime} </span></div>
+            <div className='movie_info-block'><span className="info_type">Release date:</span><span className='data'> {date}</span></div>
+            <div className='movie_info-block'><span className="info_type">Director:</span><span className='data'> {director} </span></div>
+            <div className='movie_info-block'><span className="info_type">Producers:</span><span className='data'>{producer}</span></div>
+            <div className='movie_info-block'><span className="info_type">Director of photography:</span><span className='data'>{director_of_photography}</span></div>
+            <div className='movie_info-block'><span className="info_type">Composers:</span><span className='data'>{original_music_composer}</span></div>
             
+            <div className='movie_info-block'>
+                <span className="info_type">Trailers:</span>
+                <div className='data'>
+                    <div className="movie_trailers">
+                        {
+                            trailers.map(item=> {
+                                return(
+                                    <a
+                                        key={item.key}
+                                        className='movie_trailers-link'
+                                        href={`${videoUrl}${item.key}`}
+                                        target='_blank' rel="noreferrer"
+                                        >
+                                        <span>{item.name}</span>
+                                    </a>)
+                                })
+                        }
+                    </div>
+                </div>
+            </div>
+
             <div>
                 <span className="info_type descr">Description: </span><br/>
                 {description}
