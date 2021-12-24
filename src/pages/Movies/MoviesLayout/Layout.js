@@ -7,6 +7,7 @@ const Layout = () => {
         {path:'/movies/popular', text:'Popular', id:1},
         {path:'/movies/upcoming', text:'Upcoming', id:2} 
     ]
+
     return (
         <div className="layout">
             <div className="layout_links">

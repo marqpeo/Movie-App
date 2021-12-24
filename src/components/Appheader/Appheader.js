@@ -7,7 +7,7 @@ import logo from "../../style/svg/movie_app.svg"
 const Appheader = () => {
 
     const navlinks = [
-        {path:'/movies', text:'Movies', id:0},
+        {path:'/movies/top_rated', text:'Movies', id:0},
         {path:'/tv_shows', text:'TV Shows', id:1},
         {path:'/actors', text:'Actors', id:2}
     ]

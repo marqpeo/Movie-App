@@ -12,7 +12,7 @@ const useTVService = () => {
     const getTVShow = async (showId) => {
         const res = await request.get(`/tv/${showId}?api_key=${_apiKey}`)
         setLoading(false)
-        // console.log(res.dta);
+        console.log(res.data);
         return _transformTVShow(res.data)
     }
 
@@ -32,7 +32,13 @@ const useTVService = () => {
             rating: show.vote_average,
             voteCount: show.vote_count,
             description: show.overview,
-            genres: show.genres.map(g => g.name).join(', ')
+            genres: show.genres.map(g => g.name).join(', '),
+            numOfSeasons: show.number_of_seasons,
+            tagline: show.tagline,
+            firstEpisode: show.first_air_date,
+            episodeRunTime: show.episode_run_time.join('/'),
+            countries: show.production_countries.map(item=>item.name).join(', '),
+            homepage: show.homepage
         }
     }
     return {

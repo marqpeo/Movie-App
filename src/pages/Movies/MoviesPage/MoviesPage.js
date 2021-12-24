@@ -9,6 +9,7 @@ const MoviesPage = () => {
         <div className="movies_page">
             <Routes>
                 <Route path='' element={<Layout/>}>
+                    <Route index/>
                     <Route path='top_rated' element={<MoviesSet/>}/>
                     <Route path='popular' element={<MoviesSet/>} />
                     <Route path='upcoming' element={<MoviesSet/>} />
