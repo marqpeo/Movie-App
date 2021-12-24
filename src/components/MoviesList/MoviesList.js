@@ -33,7 +33,7 @@ const MoviesList = ({type, movieId, actorId, actorName}) => {
                 {
                     moviesList.map(item => {
                         return ( 
-                            <Link key={item.id} to={`/movie/${item.id}`} className="movie">
+                            <Link key={item.id} to={`/movies/${item.id}`} className="movie">
                                 <img src={`${posterUrl}${item.poster}`} alt={item.name}/>
                                 <div className="movie_descr">
                                     <div className="movie_descr-name">{item.title}</div>

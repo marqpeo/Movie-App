@@ -1,0 +1,48 @@
+@import '../../style/variables'
+
+
+.show
+
+    &_title
+        text-align: left
+        width: 85%
+    &_info
+        width: 65%
+        margin: 0 auto
+        position: relative
+        .descr
+            font-size: 1.5rem
+        &-block
+            margin: 1rem 0
+            text-align: left
+            width: 100%
+            display: flex
+            justify-content: baseline
+            align-items: baseline
+            .info_type
+                width:25%
+                filter: brightness(80%)
+            .rating
+                margin-left: 1rem
+                font-size: 1.6rem
+            .data
+                font-size: 1rem
+            .producer
+                text-decoration: none
+                color: $text-color
+            .movie_trailers
+                display: flex
+                flex-direction: column
+                justify-content: center
+                &-link
+                    margin-bottom: .5rem
+                    color: $text-color
+                    text-decoration: none
+                    transition: all .3s
+                    &:hover
+                        transform: translateX(-10px)
+                        span
+                            border-bottom: 1px outset $text-color
+                    span
+                        border-bottom: 1px inset $red-color
+

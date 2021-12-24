@@ -25,7 +25,7 @@ const SearchForm = ({defaultValue}) => {
                 placeholder='🔍'
                 />
                 <button
-                className='search_btn' //"btn btn-outline"
+                className='main_btn'
                 type="submit">Search</button>
         </form>
     )

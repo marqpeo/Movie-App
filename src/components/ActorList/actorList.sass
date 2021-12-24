@@ -1,6 +1,7 @@
-@import '../../style/variables'
+@import "../../style/variables.sass"
 
-.movies
+.actors
+    // height: 150px
     width: 100%
     overflow: hidden
     margin-top: 20px
@@ -14,34 +15,29 @@
         scroll-snap-type: block
         scroll-snap-align: 100px
         scrollbar-base-color: $red-color
-        .movie
+        .actor
             position: relative
             height: 250px
-            min-width: 170px
-            overflow: hidden
             background-color: #fff
             margin: 0 5px
             color: $text-color
+            transition: all .3s
             img
-                object-fit: cover
                 height: 100%
-                width: 100%
-            &:hover
-                font-size: 1.3rem
-                .movie_descr
-                    background: linear-gradient(to top, black, rgba(0, 0, 0, 0.4))
             &_descr
                 position: absolute
                 bottom: 0
                 transition: all .4s
                 width: 100%
-                background: linear-gradient(to top, black, rgba(0, 0, 0, 0.2))
-                display: flex
-                justify-content: space-between
-                align-items: flex-end
+                background: linear-gradient(to top, black, rgba(0, 0, 0, 0.1))
                 &-name
-                    max-width: 80%
-                &-rating
-                    text-align: right
-                    width: auto
-                    font-size: 1.5rem
+                    font-size: 1.25rem
+                &-char
+                    font-size: .9rem
+                    font-size: 0
+                    transition: all .3s
+            &:hover
+                .actor_descr
+                    background: linear-gradient(to top, black, rgba(0, 0, 0, 0.3))
+                .actor_descr-char
+                    font-size: .9rem

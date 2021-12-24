@@ -2,9 +2,7 @@
 
 # Movie-App
 
-The application shows a catalog of films in three sets: top rated, popular and upcoming. For more details, there are page of movies, where you can find more movie's info.
-
-There is a search for which at the moment you can find only films.
+The application shows sets of films, TV shows and actors. For more details, there are page of single movie, show or actor, where you can find more info.
 
 At the moment it's just a first version of the app.
 
@@ -51,9 +49,12 @@ And for installing the dependencies in the local node_modules folder from packag
 - [x]   More information on movie's page (similar movies, actors...)
 - [x]   Single actor's page
 - [x]   Crew information on movie's page
-- [ ]   Sets of actors
-- [ ]   Search for actors as films
-- [ ]   TV series
+- [x]   Set(s) of actors
+- [x]   TV Shows
+- [ ]   More info on pages
+- [ ]   Sets of TV Shows as movies on actor's page
+- [ ]   Similar shows on TV show's page
+- [ ]   Search for actors as movies
 - [ ]   ?
 
 <p align="right"><a href="#top">back to top</a></p>

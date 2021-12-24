@@ -1,15 +1,9 @@
-import axios from "axios";
 import { useState } from "react";
+import {request, _apiKey, posterUrl, videoUrl} from '../service/request'
 
-const request = axios.create({
-    baseURL: 'https://api.themoviedb.org/3',
-    responseType: 'json'
-})
 
 const useMovieService = () => {
-    const _apiKey = '014790e247641f87a6ec229cf9cd44e4'
-    const posterUrl = 'https://image.tmdb.org/t/p/w500'
-    const videoUrl = 'https://www.youtube.com/watch?v='
+
     const [loading, setLoading] = useState(true)
 
 
