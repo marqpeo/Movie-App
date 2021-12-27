@@ -12,18 +12,43 @@ const useTVService = () => {
     const getTVShow = async (showId) => {
         const res = await request.get(`/tv/${showId}?api_key=${_apiKey}`)
         setLoading(false)
-        console.log(res.data);
         return _transformTVShow(res.data)
     }
+
+    const getTVShowsOfActor = async (actorId) => {
+        const res = await request.get(`/person/${actorId}/tv_credits?api_key=${_apiKey}`)
+        setLoading(false)
+        return res.data.cast.map(_transformShowSet)
+                            .sort((a,b)=> b.rating-a.rating)
+                            .slice(0,20)
+    }
+    const getSimilarShows = async (showId) => {
+        const res = await request.get(`/tv/${showId}/similar?api_key=${_apiKey}`)
+        setLoading(false)
+        return res.data.results.map(_transformShowSet)
+                               .sort((a,b)=> b.rating-a.rating)
+    }
+
+    const getShowVideos = async (showId) => {
+        const res = await request.get(`/tv/${showId}/videos?api_key=${_apiKey}`)
+                                 
+        setLoading(false)
+        return res.data.results
+                    .filter(item=> item.site==="YouTube"&&item.type==="Trailer")
+    }
+    // =============================================================================
 
     const _transformShowSet = (show) => {
         return {
             id: show.id,
             title: show.name,
             poster: show.poster_path,
-            rating: show.vote_average
+            rating: show.vote_average.toFixed(1)
         }
     }
+
+    // =============================================================================
+
     const _transformTVShow = (show) => {
         return {
             id: show.id,
@@ -41,9 +66,18 @@ const useTVService = () => {
             homepage: show.homepage
         }
     }
+
+    // =============================================================================
+
+
+
+    // =============================================================================
     return {
         getTVShowsSet,
         getTVShow,
+        getTVShowsOfActor,
+        getSimilarShows,
+        getShowVideos,
         loading,
         posterUrl,
         videoUrl

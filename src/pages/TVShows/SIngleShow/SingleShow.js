@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { useNavigate,useParams } from "react-router-dom"
 import ShowInfo from "../../../components/ShowInfo/ShowInfo"
 import Spinner from "../../../components/Spinner/Spinner"
+import ShowsList from "../../../components/TVShowsList/ShowsList"
 import useTVService from "../../../hooks/useTVService"
 
 import './single-show.sass'
@@ -10,7 +11,7 @@ const SingleShow = () => {
     
     const {showId} = useParams()
     const navigate = useNavigate()
-    const {getTVShow,loading,posterUrl,videoUrl} = useTVService()
+    const {getTVShow,loading,posterUrl} = useTVService()
     const [show, setShow] = useState({})
     
     useEffect(() => {
@@ -19,7 +20,6 @@ const SingleShow = () => {
     },[showId])
 
     if (loading) return <Spinner/>
-    
     
     return (
         <div className="single_show">
@@ -35,9 +35,7 @@ const SingleShow = () => {
                         >Go back</button>
                 
             </div>
-
-            {/* <ActorList movieId={movieId}/>
-            <MoviesList type="movie" movieId={movieId}/> */}
+            <ShowsList type='show' showId={showId}/>
         </div>
     )
 }

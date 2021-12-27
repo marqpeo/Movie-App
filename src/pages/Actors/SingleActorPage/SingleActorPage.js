@@ -6,6 +6,7 @@ import MoviesList from '../../../components/MoviesList/MoviesList'
 import SpinnerPage from '../../SpinnerPage/SpinnerPage'
 
 import './single-actor-page.sass'
+import ShowsList from '../../../components/TVShowsList/ShowsList'
 
 const SingleActorPage = () => {
     const {actorId} = useParams()
@@ -55,6 +56,7 @@ const SingleActorPage = () => {
                 </div>
             </div>
             <MoviesList type='actor' actorId={actorId} actorName={name}/>
+            <ShowsList type='actor' actorId={actorId} actorName={name}/>
         </div>
     )
 }

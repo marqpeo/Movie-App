@@ -1,0 +1,47 @@
+@import '../../style/variables'
+
+.shows
+    width: 100%
+    overflow: hidden
+    margin-top: 20px
+    margin-bottom: 20px
+    &_list
+        display: flex
+        flex-direction: row
+        justify-content: flex-start
+        align-items: center
+        overflow-x: scroll
+        scroll-snap-type: block
+        scroll-snap-align: 100px
+        scrollbar-base-color: $red-color
+        .show
+            position: relative
+            height: 250px
+            min-width: 170px
+            overflow: hidden
+            background-color: #fff
+            margin: 0 5px
+            color: $text-color
+            img
+                object-fit: cover
+                height: 100%
+                width: 100%
+            &:hover
+                font-size: 1.3rem
+                .movie_descr
+                    background: linear-gradient(to top, black, rgba(0, 0, 0, 0.4))
+            &_descr
+                position: absolute
+                bottom: 0
+                transition: all .4s
+                width: 100%
+                background: linear-gradient(to top, black, rgba(0, 0, 0, 0.2))
+                display: flex
+                justify-content: space-between
+                align-items: flex-end
+                &-name
+                    max-width: 80%
+                &-rating
+                    text-align: right
+                    width: auto
+                    font-size: 1.5rem

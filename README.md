@@ -51,9 +51,9 @@ And for installing the dependencies in the local node_modules folder from packag
 - [x]   Crew information on movie's page
 - [x]   Set(s) of actors
 - [x]   TV Shows
+- [x]   Similar shows on TV show's page
 - [ ]   More info on pages
 - [ ]   Sets of TV Shows as movies on actor's page
-- [ ]   Similar shows on TV show's page
 - [ ]   Search for actors as movies
 - [ ]   ?
 
