@@ -1,10 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react"
 import {Link, useLocation} from 'react-router-dom'
+import { Box, Typography } from "@mui/material"
 
 import useMovieService from "../../../hooks/useMovieService"
 import SpinnerPage from "../../SpinnerPage/SpinnerPage"
 import './movies-set.sass'
+import MainButton from "../../../components/Buttons/MainButton"
 
 const MoviesSet = () => {
 
@@ -29,15 +31,22 @@ const MoviesSet = () => {
     if (list.length<1 || loading) return <SpinnerPage/>
 
     return (
-        <div className="movies_set">
-            <h1 className='movies_set-title my-5'>Top {titleOfPage} Movies{ titleOfPage==='rated'? ' of All time' : ''}</h1>
+        <Box sx={{textAlign:'center'}}>
+            <Typography
+                variant="h4"
+                sx={{my:2}}
+                // className='movies_set-title my-5'
+                >
+                Top {titleOfPage} Movies{ titleOfPage==='rated'? ' of All time' : ''}
+            </Typography>
             <ul className='movies_set-list'>
                 {list.map(item => <View posterUrl={posterUrl} movie={item} key={item.id}/>)}
             </ul>
-            <button className="main_btn getmore"
-                    onClick={() => onRequest(false)}
-                    >Get more</button>
-        </div>
+            <MainButton
+                sx={{my:2}}
+                onClick={() => onRequest(false)}
+                >Get more</MainButton>
+        </Box>
     )
 }
 const View = ({movie, posterUrl}) => {

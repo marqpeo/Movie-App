@@ -1,6 +1,8 @@
 
+import { Typography } from '@mui/material'
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import MainButton from '../../../components/Buttons/MainButton'
 import useActorService from '../../../hooks/useActorService'
 import SpinnerPage from '../../SpinnerPage/SpinnerPage'
 import './actors-set.sass'
@@ -28,13 +30,19 @@ const ActorsSet = () => {
     if (list.length<1 || loading) return <SpinnerPage/>
     return (
         <div className='actors_set'>
-            <h1 className='actors_set-title'>Top popular actors </h1>
+            <Typography
+                // className='shows_set-title my-5'
+                variant='h3'
+                sx={{my:4}}
+                >Top popular actors</Typography>
             <ul className='actors_set-list'>
                 {list.map(item => <View posterUrl={posterUrl} actor={item} key={item.id}/>)}
             </ul>
-            <button className="main_btn getmore"
-                    onClick={() => onRequest(false)}
-                    >Get more</button>
+            <MainButton
+            // className="main_btn getmore"
+                sx={{my:2}}
+                onClick={() => onRequest(false)}
+                >Get more</MainButton>
         </div>
     )
 }

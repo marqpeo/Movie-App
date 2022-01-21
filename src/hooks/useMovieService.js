@@ -16,6 +16,7 @@ const useMovieService = () => {
     const getMovieById = async (movieId) => {
         const res = await request.get(`/movie/${movieId}?api_key=${_apiKey}`)
         setLoading(false)
+        console.log(res.data);
         return _transformMovie(res.data)
     }
     
@@ -48,15 +49,16 @@ const useMovieService = () => {
                     .slice(0,20)
     }
     const getSimilarMovies = async (movieId) => {
-        const res = await (await request.get(`/movie/${movieId}/similar?api_key=${_apiKey}`)).data.results
+        const res = await request.get(`/movie/${movieId}/similar?api_key=${_apiKey}`)
         setLoading(false)
-        return res.map(_transformMoviesList).sort((a,b)=> b.rating-a.rating)
+        return res.data.results.map(_transformMoviesList).sort((a,b)=> b.rating-a.rating)
     }
     const getMovieVideos = async (movieId) => {
-        const res = await (await request.get(`/movie/${movieId}/videos?api_key=${_apiKey}`))
-                        .data.results
+        const res = await request.get(`/movie/${movieId}/videos?api_key=${_apiKey}`)
+        setLoading(false)
+        return res.data.results
                         .filter(item=> item.site==="YouTube"&&item.type==="Trailer")
-        return res.map(_transformVideosOfMovie)
+                        .map(_transformVideosOfMovie)
     }
 
 // ======================================================================================

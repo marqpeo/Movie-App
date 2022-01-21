@@ -18,7 +18,9 @@ I am using the following frameworks and libraries and their latest features:
 
 * [Axios](https://github.com/axios/axios)
 
-* [Bootstrap](https://getbootstrap.com/)
+* <s>[Bootstrap](https://getbootstrap.com/)</s>
+
+* [Material-UI](https://mui.com)
 
 * [Sass](https://github.com/sass/dart-sass)
 

@@ -8,6 +8,7 @@ import './searchpage.sass'
 
 const SearchPage = () => {
 
+    console.log(useParams());
     const {query} = useParams()
     const [listMovies, setListMovies] = useState([])
 

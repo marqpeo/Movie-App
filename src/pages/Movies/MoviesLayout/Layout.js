@@ -1,7 +1,16 @@
+import { CheckBoxOutlineBlank } from "@mui/icons-material";
+import { Box, styled } from "@mui/material";
 import { NavLink, Outlet } from "react-router-dom";
+import MainButton from "../../../components/Buttons/MainButton";
 import './layout.sass'
 
+const StyledNavLink = styled(NavLink)(() => ({
+    padding: '0.2rem 0.4rem',
+    color:'white'
+}))
+
 const Layout = () => {
+    
     const navLinks = [
         {path:'/movies/top_rated', text:'Top rated', id:0},
         {path:'/movies/popular', text:'Popular', id:1},
@@ -9,22 +18,29 @@ const Layout = () => {
     ]
 
     return (
-        <div className="layout">
-            <div className="layout_links">
-            {   navLinks.map(item=> {
+        <Box sx={{  d: 'flex',
+                    flexDirection:'column',
+                    alignItems:'center', }}
+                    >
+            <Box sx={{pt:'2.5rem',w:'90%'}}>
+            {   navLinks.map(({id,path,text})=> {
                     return(
-                        <NavLink
-                            key={item.id}
-                            className={({isActive})=> isActive?'main_btn isActive':'main_btn'}
-                            to={item.path}
+                        <MainButton
+                            sx={{mx:1,p:0}}
                             >
-                            {item.text}
-                        </NavLink>
+                            <StyledNavLink
+                                key={id}
+                                to={path}
+                                sx={{textDecoration:'none'}}
+                                >
+                                {text}
+                            </StyledNavLink>
+                        </MainButton>
                     )   })
             }
-            </div>
+            </Box>
             <Outlet/>
-        </div>
+        </Box>
     )
 }
 

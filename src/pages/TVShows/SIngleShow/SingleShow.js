@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { useNavigate,useParams } from "react-router-dom"
+import MainButton from "../../../components/Buttons/MainButton"
 import ShowInfo from "../../../components/ShowInfo/ShowInfo"
 import Spinner from "../../../components/Spinner/Spinner"
 import ShowsList from "../../../components/TVShowsList/ShowsList"
@@ -17,6 +18,7 @@ const SingleShow = () => {
     useEffect(() => {
         getTVShow(showId)
             .then(setShow)
+        window.scrollTo(0, 0)
     },[showId])
 
     if (loading) return <Spinner/>
@@ -30,11 +32,14 @@ const SingleShow = () => {
                 </div>
 
                 <ShowInfo show={show}/>
-                <button className="main_btn goback"
-                        onClick={() => navigate(-1)}
-                        >Go back</button>
                 
             </div>
+            <MainButton
+                    sx={{   position :'absolute',
+                            right: '10%',
+                            top: '10%'}}
+                    onClick={() => navigate(-1)}
+                    >Go Back</MainButton>
             <ShowsList type='show' showId={showId}/>
         </div>
     )

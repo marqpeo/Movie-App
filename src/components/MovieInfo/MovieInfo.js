@@ -1,5 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
+// import { SvgIcon } from '@mui/material';
+import StarRateIcon from '@mui/icons-material/StarRate';
+
 import useMovieService from '../../hooks/useMovieService';
 import SpinnerPage from '../../pages/SpinnerPage/SpinnerPage';
 import './movie-info.sass'
@@ -31,7 +34,7 @@ const MovieInfo = ({movie, movieId}) => {
         <div className="movie_info">
             <h1 className="movie_title">{title}{date?` (${date.slice(0,4)})`:null}</h1>
             <div className='movie_info-block'>
-                <i className="bi bi-star-fill fs-4"></i>
+                <StarRateIcon fontSize='large'/> 
                 <span className="rating">{rating}</span> / {voteCount}
             </div>
             <div className='movie_info-block'>{status==='Released'?'':(<span className="info_type">Status:</span>)}<span className='data'> {status}</span></div>

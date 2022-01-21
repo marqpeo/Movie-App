@@ -7,6 +7,7 @@ import SpinnerPage from '../../SpinnerPage/SpinnerPage'
 
 import './single-actor-page.sass'
 import ShowsList from '../../../components/TVShowsList/ShowsList'
+import MainButton from '../../../components/Buttons/MainButton'
 
 const SingleActorPage = () => {
     const {actorId} = useParams()
@@ -19,6 +20,7 @@ const SingleActorPage = () => {
     useEffect(() => {
         getActorById(actorId)
             .then(setActor)
+        window.scrollTo(0, 0)           
     }, [])
 
     if(loading) return <SpinnerPage/>
@@ -50,13 +52,16 @@ const SingleActorPage = () => {
                             className="open_bio"
                             >{bioStyle==='text'?'Read more':'Hide'}</div>
                     </div>
-                    <button className="main_btn goback"
-                            onClick={() => navigate(-1)}
-                            >Go back</button>
                 </div>
             </div>
             <MoviesList type='actor' actorId={actorId} actorName={name}/>
             <ShowsList type='actor' actorId={actorId} actorName={name}/>
+            <MainButton
+                sx={{   position :'absolute',
+                        right: '10%',
+                        top: '10%'}}
+                onClick={() => navigate(-1)}
+                >Go Back</MainButton>
         </div>
     )
 }

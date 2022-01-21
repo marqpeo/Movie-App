@@ -1,21 +1,20 @@
 import { useNavigate } from 'react-router-dom'
-import img from '../../style/svg/404.svg'
+import MainButton from '../../components/Buttons/MainButton'
 
+
+import img from '../../style/svg/404.svg'
 import './page404.sass'
 
 
 const Page404 = () => {
     const navigate = useNavigate()
     return (
-        <div className="page">
             <div className="page404">
                 <img src={img} alt='error' />
-                <button
-                        className="main_btn goback"
+                <MainButton
                         onClick={() => navigate(-1)}
-                        >Go back</button>
+                        >Go back</MainButton>
             </div>
-        </div>
     )
 }
 
