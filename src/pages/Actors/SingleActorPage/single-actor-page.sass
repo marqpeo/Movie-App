@@ -2,20 +2,14 @@
 
 .actor_page
     min-height: 100vh
-    // max-width: 80%
-    margin: 0 auto
-    display: flex
-    flex-direction: column
-    justify-content: center
-    align-items: center
-    padding-top: 90px
+    position: relative
     .actor
         &_details
             display: flex
             justify-content: space-between
             flex-wrap: wrap
         &_photo
-            width: 30%
+            // width: 30%
             min-width: 300px
             max-height: 100vh
             margin: 0 auto
@@ -29,8 +23,6 @@
             width: 65%
             margin: 0 auto
             position: relative
-            .name
-                margin-bottom: 30px
             p
                 text-align: left
                 display: flex
@@ -58,9 +50,9 @@
                     cursor: pointer
                     &:hover
                         color: $red-color
-            .goback
-                position: absolute
-                right: 0
-                top: 0
+    .goback
+        position: absolute
+        right: 10%
+        top: 10%
 
         

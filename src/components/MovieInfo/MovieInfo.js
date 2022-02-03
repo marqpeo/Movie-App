@@ -1,8 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
-// import { SvgIcon } from '@mui/material';
-import StarRateIcon from '@mui/icons-material/StarRate';
-
+import { Container } from 'react-bootstrap';
 import useMovieService from '../../hooks/useMovieService';
 import SpinnerPage from '../../pages/SpinnerPage/SpinnerPage';
 import './movie-info.sass'
@@ -31,10 +29,10 @@ const MovieInfo = ({movie, movieId}) => {
 
     const {producer,director,director_of_photography,original_music_composer} = crew
     return (
-        <div className="movie_info">
-            <h1 className="movie_title">{title}{date?` (${date.slice(0,4)})`:null}</h1>
+        <Container fluid className="movie_info mt-4">
+            <h1 className="text-left w-75">{title}{date?` (${date.slice(0,4)})`:null}</h1>
             <div className='movie_info-block'>
-                <StarRateIcon fontSize='large'/> 
+                <i className="bi bi-star-fill fs-4"></i>
                 <span className="rating">{rating}</span> / {voteCount}
             </div>
             <div className='movie_info-block'>{status==='Released'?'':(<span className="info_type">Status:</span>)}<span className='data'> {status}</span></div>
@@ -73,7 +71,7 @@ const MovieInfo = ({movie, movieId}) => {
                 <span className="info_type descr">Description: </span><br/>
                 {description}
             </div>
-        </div>
+        </Container>
     )
 }
 

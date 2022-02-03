@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
+import { Col, Container, Image, Row } from "react-bootstrap"
 import { useNavigate,useParams } from "react-router-dom"
-import MainButton from "../../../components/Buttons/MainButton"
 import ShowInfo from "../../../components/ShowInfo/ShowInfo"
 import Spinner from "../../../components/Spinner/Spinner"
 import ShowsList from "../../../components/TVShowsList/ShowsList"
@@ -18,30 +18,26 @@ const SingleShow = () => {
     useEffect(() => {
         getTVShow(showId)
             .then(setShow)
-        window.scrollTo(0, 0)
     },[showId])
 
     if (loading) return <Spinner/>
     
     return (
-        <div className="single_show">
+        <Container className="single_show pt-5">
 
-            <div className="single_show-details">
-                <div className="show_poster">
-                    <img src={`${posterUrl}${show.poster}`} alt='poster'/>
-                </div>
-
-                <ShowInfo show={show}/>
-                
-            </div>
-            <MainButton
-                    sx={{   position :'absolute',
-                            right: '10%',
-                            top: '10%'}}
+            <Row className="single_show-details mt-5">
+                <Col lg='3' className="show_poster text-center">
+                    <Image fluid src={`${posterUrl}${show.poster}`} alt='poster'/>
+                </Col>
+                <Col>
+                    <ShowInfo show={show}/>
+                </Col>
+            </Row>
+            <button className="btn btn-danger goback"
                     onClick={() => navigate(-1)}
-                    >Go Back</MainButton>
+                    >Go back</button>
             <ShowsList type='show' showId={showId}/>
-        </div>
+        </Container>
     )
 }
 

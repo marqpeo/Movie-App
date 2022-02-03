@@ -1,7 +1,6 @@
-import { Box, Typography } from '@mui/material'
 import { useEffect, useState } from 'react'
+import { Container } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import MainButton from '../../../components/Buttons/MainButton'
 
 import useTVService from '../../../hooks/useTVService'
 import SpinnerPage from '../../SpinnerPage/SpinnerPage'
@@ -28,20 +27,15 @@ const TVSet = () => {
     if (list.length<1 || loading) return <SpinnerPage/>
 
     return (
-        <Box sx={{textAlign:'center'}}>
-            <Typography
-                // className='shows_set-title my-5'
-                variant='h3'
-                sx={{my:4}}
-                >Top TV Shows</Typography>
+        <Container fluid className="shows_set text-center pt-5">
+            <h1 className='shows_set-title my-5'>Top TV Shows</h1>
             <ul className='shows_set-list'>
                 {list.map(item => <View posterUrl={posterUrl} show={item} key={item.id}/>)}
             </ul>
-            <MainButton
-                sx={{my:2}}
-                onClick={() => onRequest(false)}
-                >Get more</MainButton>
-        </Box>
+            <button className="btn btn-danger mb-4"
+                    onClick={() => onRequest(false)}
+                    >Get more</button>
+        </Container>
     )
 }
 const View = ({show, posterUrl}) => {

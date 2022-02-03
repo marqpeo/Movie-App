@@ -1,12 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react"
+import { Container, Image } from "react-bootstrap"
 import {Link, useLocation} from 'react-router-dom'
-import { Box, Typography } from "@mui/material"
 
 import useMovieService from "../../../hooks/useMovieService"
 import SpinnerPage from "../../SpinnerPage/SpinnerPage"
 import './movies-set.sass'
-import MainButton from "../../../components/Buttons/MainButton"
 
 const MoviesSet = () => {
 
@@ -31,22 +30,15 @@ const MoviesSet = () => {
     if (list.length<1 || loading) return <SpinnerPage/>
 
     return (
-        <Box sx={{textAlign:'center'}}>
-            <Typography
-                variant="h4"
-                sx={{my:2}}
-                // className='movies_set-title my-5'
-                >
-                Top {titleOfPage} Movies{ titleOfPage==='rated'? ' of All time' : ''}
-            </Typography>
+        <Container fluid className='text-center'>
+            <h1 className='text-capitalize my-4'>Top {titleOfPage} Movies{ titleOfPage==='rated'? ' of All time' : ''}</h1>
             <ul className='movies_set-list'>
                 {list.map(item => <View posterUrl={posterUrl} movie={item} key={item.id}/>)}
             </ul>
-            <MainButton
-                sx={{my:2}}
-                onClick={() => onRequest(false)}
-                >Get more</MainButton>
-        </Box>
+            <button className="btn btn-danger my-3"
+                    onClick={() => onRequest(false)}
+                    >Get more</button>
+        </Container>
     )
 }
 const View = ({movie, posterUrl}) => {
@@ -54,11 +46,11 @@ const View = ({movie, posterUrl}) => {
     return (
             <li className='movie'>
                 <Link to={`/movies/${movie.id}`}>
-                        <img src={`${posterUrl}${movie.poster}`} alt="poster"/>
-                            <div className="movie_descr">
-                                <div className='title'>{movie.title}</div>
-                                <div className='rating'>{movie.rating}</div>
-                            </div>                     
+                        <Image src={`${posterUrl}${movie.poster}`} alt="poster"/>
+                        <div className="movie_descr">
+                            <div className='title'>{movie.title}</div>
+                            <div className='rating'>{movie.rating}</div>
+                        </div>                     
                 </Link>
             </li>
     )

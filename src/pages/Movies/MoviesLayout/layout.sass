@@ -1,11 +1,18 @@
 @import '../../../style/variables'
 
 .layout
-    // padding-top: 6rem
+    padding-top: 6rem
     display: flex
     flex-direction: column
     align-items: center
     &_links
         width: 90%
         a
+            transition: all .3s
+            margin-right: 1rem
             text-decoration: none
+            background-color: $text-color
+            color: black
+            &.isActive
+                color: $text-color
+                background-color: $red-color

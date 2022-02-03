@@ -7,7 +7,7 @@ import SpinnerPage from '../../SpinnerPage/SpinnerPage'
 
 import './single-actor-page.sass'
 import ShowsList from '../../../components/TVShowsList/ShowsList'
-import MainButton from '../../../components/Buttons/MainButton'
+import { Col, Container, Image, Row } from 'react-bootstrap'
 
 const SingleActorPage = () => {
     const {actorId} = useParams()
@@ -20,7 +20,6 @@ const SingleActorPage = () => {
     useEffect(() => {
         getActorById(actorId)
             .then(setActor)
-        window.scrollTo(0, 0)           
     }, [])
 
     if(loading) return <SpinnerPage/>
@@ -30,14 +29,15 @@ const SingleActorPage = () => {
 
 
     return (
-        <div className='actor_page'>
-            <div className="actor_details">
-                <div className="actor_photo">
-                    <img src={`${posterUrl}${photo}`} alt={name}/>
-                </div>
+        <Container className='actor_page pt-5'>
 
-                <div className="actor_info">
-                    <h1 className="name">{name}</h1>
+            <Row className="actor_details mt-5">
+                <Col lg='3' className="actor_photo text-center">
+                    <Image src={`${posterUrl}${photo}`} alt={name}/>
+                </Col>
+
+                <Col className="actor_info">
+                    <h1 className="mb-4">{name}</h1>
                     <p><span className="info_type">Birthday:</span><span className='data'> {birthday} </span></p>
                     {
                         deathday? ( <p><span className="info_type">Deathday:</span>
@@ -52,17 +52,17 @@ const SingleActorPage = () => {
                             className="open_bio"
                             >{bioStyle==='text'?'Read more':'Hide'}</div>
                     </div>
-                </div>
-            </div>
+                </Col>
+            </Row>
+            <button className="btn btn-danger goback"
+                    onClick={() => navigate(-1)}
+                    >Go back</button>
+
+
+
             <MoviesList type='actor' actorId={actorId} actorName={name}/>
             <ShowsList type='actor' actorId={actorId} actorName={name}/>
-            <MainButton
-                sx={{   position :'absolute',
-                        right: '10%',
-                        top: '10%'}}
-                onClick={() => navigate(-1)}
-                >Go Back</MainButton>
-        </div>
+        </Container>
     )
 }
 

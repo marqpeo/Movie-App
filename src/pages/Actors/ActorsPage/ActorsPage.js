@@ -5,12 +5,10 @@ import SingleActorPage from "../SingleActorPage/SingleActorPage"
 
 const ActorsPage = () => {
     return (
-        <div className="actors_page">
-            <Routes>
-                <Route path='/' element={<ActorsSet/>}/>
-                <Route path='/:actorId' element={<SingleActorPage/>}/>
-            </Routes>
-        </div>
+        <Routes>
+            <Route index path='/*' element={<ActorsSet/>}/>
+            <Route path='/:actorId' element={<SingleActorPage/>}/>
+        </Routes>
     )
 }
 
